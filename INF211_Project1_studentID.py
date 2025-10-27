@@ -27,7 +27,7 @@ def color_to_multiplier_and_tolerance(mult_color, tol_color):
     mult_coefficient = 0
     tolerance_rate= 0
     for i in range(0,len(valid_colors)): 
-        if mult_color == valid_colors[i] and i<=9: #9. indexe kadar bir örüntü olduğu için kısaca döngüyle yaptım
+        if mult_color == valid_colors[i]  and i<=9: #9. indexe kadar bir örüntü olduğu için kısaca döngüyle yaptım
             mult_coefficient = i
             break
     if mult_color == "SILVER":
@@ -36,7 +36,7 @@ def color_to_multiplier_and_tolerance(mult_color, tol_color):
         mult_coefficient = -1   
     tol_values = [1.0, 2.0, 3.0, 4.0, 0.5, 0.25, 0.1, 0.05, 5.0, 10.0]  
     for i in range(0,len(tolerance_colors)):
-        if tol_color == tolerance_colors[i]:
+        if tol_color == tolerance_colors[i] :
             tolerance_rate = tol_values[i]
     return mult_coefficient,tolerance_rate
 def compute_resistor_value(d1, d2, exp, tol):
@@ -51,6 +51,9 @@ def compute_resistor_value(d1, d2, exp, tol):
 def main():
    line = input("Enter 4-band resistor code (e.g. YELLOW-VIOLET-RED-GOLD):")
    bands = parse_four_bands(line)
+   if len(bands) != 4:
+       print("Empty or out of range index")
+       return
    for i in range(len(bands)):
     if bands[i] == "GRAY":
         bands[i] = "GREY"
@@ -70,10 +73,7 @@ def main():
        return
    elif bands[3] not in tolerance_colors:
        print("Invalid Tolerance")
-       return
-   elif len(bands) != 4:
-       print("Empty or out of range index")
-       return
+       return 
    compute_resistor_value(color_to_value(bands[0]), color_to_value(bands[1]), color_to_multiplier_and_tolerance(bands[2],bands[3])[0], color_to_multiplier_and_tolerance(bands[2],bands[3])[1])
 if __name__ == "__main__":
     main()
