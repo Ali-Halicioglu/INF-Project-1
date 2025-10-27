@@ -51,6 +51,9 @@ def compute_resistor_value(d1, d2, exp, tol):
 def main():
    line = input("Enter 4-band resistor code (e.g. YELLOW-VIOLET-RED-GOLD):")
    bands = parse_four_bands(line)
+   for i in range(len(bands)):
+    if bands[i] == "GRAY":
+        bands[i] = "GREY"
    for ch in line:
       if ch != '-' and not is_upper_letter(ch) or line[0] == "-" or line[-1] == "-":
          print("Invalid input! Please use uppercase letters (A–Z)." if ch != '-' and not is_upper_letter(ch) else "Invalid Format")
