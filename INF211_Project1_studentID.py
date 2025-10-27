@@ -75,4 +75,5 @@ def main():
        print("Empty or out of range index")
        return
    compute_resistor_value(color_to_value(bands[0]), color_to_value(bands[1]), color_to_multiplier_and_tolerance(bands[2],bands[3])[0], color_to_multiplier_and_tolerance(bands[2],bands[3])[1])
-main()
+if __name__ == "__main__":
+    main()
